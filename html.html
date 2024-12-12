@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="آلة حاسبة احترافية تعمل على المتصفح احسب الأرقام بسهولة مع تصميم عصري ووظائف متقدمة ">
+  <meta name="keywords" content="آلة حاسبة, حاسبة اونلاين, آلة حاسبة احترافية, حساب العمليات الحسابية">
+  <meta name="author" content="OMAR SAAD">
+  <title>آلة حاسبة احترافية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://e7.pngegg.com/pngimages/882/384/png-clipart-calculator-icon-calculator-electronics-mobile-phone-thumbnail.png" type="image/png">
+  <style>
+    body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+  
+  .container {
+    text-align: center;
+    width: 350px;
+  }
+  
+  header {
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .description {
+    color: #555;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  
+  .calculator {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .display {
+    margin-bottom: 20px;
+  }
+  
+  #result {
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    text-align: right;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  button {
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #76edf1;
+  }
+  
+  button:nth-child(4n),
+  button.btn-clear,
+  button.btn-delete {
+    background-color: #ff0000;
+  }
+  
+  button:nth-child(4n):hover,
+  button.btn-clear:hover,
+  button.btn-delete:hover {
+    background-color: #00ff00;
+  }
+  
+  .btn-equal {
+    background-color: #00ff00;
+    color: #fff;
+    grid-column: span 2;
+  }
+  
+  .btn-equal:hover {
+    background-color: #ff8758;
+  }
+  
+  .btn-zero {
+    grid-column: span 2;
+  }
+  
+  footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  footer p {
+    margin: 5px 0;
+  }
+  
+  footer a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  footer a:hover {
+    color: #0056b3;
+  }
+  
+  @media (max-width: 400px) {
+    .container {
+      width: 90%;
+    }
+  
+    h1 {
+      font-size: 22px;
+    }
+  
+    .description {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 16px;
+      height: 45px;
+    }
+  
+    #result {
+      font-size: 20px;
+    }
+  
+    footer {
+      font-size: 12px;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>آلة حاسبة احترافية</h1>
+    </header>
+
+    <div class="calculator">
+      <div class="display">
+        <input type="text" id="result" placeholder="0" disabled>
+      </div>
+      
+      <div class="buttons">
+        <button onclick="clearResult()" class="btn-clear">C</button>
+        <button onclick="deleteLast()" class="btn-delete">⌫</button>
+        <button onclick="appendOperator('%')">%</button>
+        <button onclick="appendOperator('/')">÷</button>
+        
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="appendOperator('*')">×</button>
+        
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="appendOperator('-')">−</button>
+        
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="appendOperator('+')">+</button>
+        
+        <button onclick="appendNumber('0')" class="btn-zero">0</button>
+        <button onclick="appendNumber('.')">.</button>
+        <button onclick="calculateResult()" class="btn-equal">=</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2024 جميع الحقوق محفوظة </p>
+      <p>تم تصميم الموقع بواسطة عمر سعد</p>
+    </footer>
+  </div>
+  <script>
+    const resultField = document.getElementById("result");
+
+function appendNumber(number) {
+  if (resultField.value === 'خطأ') {  
+    resultField.value = '';
+  }
+  resultField.value += number;
+}
+
+function appendOperator(operator) {
+  const lastChar = resultField.value.slice(-1);
+  
+  if (resultField.value === '' || isNaN(lastChar)) return;
+  
+  resultField.value += operator;
+}
+
+function clearResult() {
+  resultField.value = '';
+}
+
+function deleteLast() {
+  resultField.value = resultField.value.slice(0, -1);
+}
+
+function calculateResult() {
+  try {
+    const calculation = eval(resultField.value);
+    
+    if (calculation === Infinity || calculation === -Infinity) {
+      resultField.value = "خطأ";
+    } else {
+      resultField.value = calculation;
+    }
+  } catch (error) {
+    resultField.value = "خطأ";
+  }
+}
+
+document.addEventListener('keydown', function(event) {
+  const key = event.key;
+
+  if (key >= '0' && key <= '9' || key === '.' || ['+', '-', '*', '/'].includes(key)) {
+    appendNumber(key);
+  }
+  else if (key === 'Backspace') {
+    deleteLast();
+  }
+  else if (key === 'Escape') {
+    clearResult();
+  }
+  else if (key === 'Enter') {
+    calculateResult();
+  }
+});
+
+  </script>
+</body>
+</html>
